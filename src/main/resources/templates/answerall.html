@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Answer</title>
+</head>
+<body>
+<div th:each="answer : ${industAnswer}">
+  <h3 th:text="${answer.getId()} + '. ' + ${answer.getNameAnswer()}"></h3>
+  <ul th:each="unit : ${answer.getCorrectAnswer()}">
+    <li th:text="${unit}"></li>
+  </ul>
+</div>
+</body>
+</html>
