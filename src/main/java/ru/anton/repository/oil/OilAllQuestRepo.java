@@ -6,6 +6,5 @@ import ru.anton.entity.oil.OilQuestions;
 import java.util.Optional;
 
 public interface OilAllQuestRepo extends JpaRepository<OilQuestions, Long> {
-    @Override
     Optional<OilQuestions> findById(Long id);
 }

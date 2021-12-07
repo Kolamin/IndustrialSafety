@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CorrectAnswerOilRepo extends JpaRepository<CorrectOilAnswer, Long> {
-    @Override
+
     Optional<CorrectOilAnswer> findById(Long id);
 }
