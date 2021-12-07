@@ -7,8 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import ru.anton.IndustrialSafetyApplication;
 import ru.anton.entity.industrial.CorrectIndustAnswer;
 import ru.anton.entity.industrial.IndustrialQuestions;
-import ru.anton.repository.CorrectAnswerIndustRepository;
-import ru.anton.repository.IndustrialRepository;
+import ru.anton.entity.oil.OilQuestions;
+import ru.anton.repository.industrial.CorrectAnswerIndustRepository;
+import ru.anton.repository.industrial.IndustrialRepository;
+import ru.anton.repository.oil.OilAllQuestRepo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +24,8 @@ public class LoadDatabase {
 
     @Bean
     CommandLineRunner initDatabase(IndustrialRepository indRepo,
-                                   CorrectAnswerIndustRepository correctAnswerIndustRepository) {
+                                   CorrectAnswerIndustRepository correctAnswerIndustRepository,
+                                   OilAllQuestRepo oilAllQuestRepo) {
         return args -> {
             IndustrialSafetyApplication obj = new IndustrialSafetyApplication();
 
@@ -31,10 +34,20 @@ public class LoadDatabase {
                     .getClassLoader()
                     .getResourceAsStream("static/A_1_tests.txt");
 
-            InputStream inputAnswer = obj
+            InputStream inputIndustAnswer = obj
                     .getClass()
                     .getClassLoader()
                     .getResourceAsStream("static/A_1_answer.txt");
+
+            //------------------------------------------------------------
+            //----------------- For oil ----------------------------------
+
+            InputStream inputOilQuestions = obj
+                    .getClass()
+                    .getClassLoader()
+                    .getResourceAsStream("static/B_1_7_ALL.txt");
+
+            //-----------------------------------------------------------
 
             String[] temp = getArray(inputIndustrialQuestions);
             String[] arrayQuestion = Arrays.copyOfRange(temp, 1, temp.length);
@@ -47,7 +60,7 @@ public class LoadDatabase {
                                 Arrays.asList(Arrays.copyOfRange(split, 1, length)))));
             }
 
-            temp = getArray(inputAnswer);
+            temp = getArray(inputIndustAnswer);
             arrayQuestion = Arrays.copyOfRange(temp, 1, temp.length);
             for (String s : arrayQuestion) {
                 String[] split = s.split("\\n");
@@ -57,6 +70,16 @@ public class LoadDatabase {
                                         copyOfRange(split, 1, split.length)))));
             }
 
+            //----------------------------------------------------------------------
+            temp = getArray(inputOilQuestions);
+            arrayQuestion = Arrays.copyOfRange(temp, 1, temp.length);
+            for (String s : arrayQuestion) {
+                String[] split = s.split("\\n");
+                int length = split.length;
+                log.info("Preload oil question database " + oilAllQuestRepo
+                        .save(new OilQuestions(split[0],
+                                Arrays.asList(Arrays.copyOfRange(split, 1, length)))));
+            }
         };
     }
 

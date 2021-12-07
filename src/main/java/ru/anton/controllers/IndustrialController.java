@@ -2,16 +2,14 @@ package ru.anton.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.anton.entity.industrial.CorrectIndustAnswer;
 import ru.anton.entity.industrial.IndustrialQuestions;
-import ru.anton.repository.CorrectAnswerIndustRepository;
-import ru.anton.repository.IndustrialRepository;
+import ru.anton.repository.industrial.CorrectAnswerIndustRepository;
+import ru.anton.repository.industrial.IndustrialRepository;
 
 @Controller
+@RequestMapping("indust")
 public class IndustrialController {
 
     private final IndustrialRepository industrialRepository;
@@ -45,9 +43,9 @@ public class IndustrialController {
         model.addAttribute("answer", answer);
         CorrectIndustAnswer answerIndustRepositoryById = correctAnswerIndustRepository.findById(id);
 
-        String resultAnswer = "";
+        StringBuilder resultAnswer = new StringBuilder();
         for (String s : answerIndustRepositoryById.getCorrectAnswer()) {
-            resultAnswer = resultAnswer + s + ",";
+            resultAnswer.append(s).append(",");
         }
         model.addAttribute("correctAnswer", resultAnswer.substring(0, resultAnswer.length() - 1));
         model.addAttribute("id", id);

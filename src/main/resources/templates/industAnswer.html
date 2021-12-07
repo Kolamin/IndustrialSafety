@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <form method="get" th:action="@{/concreteindust/{id}(id=${id > 181}? 1 : ${id} + 1)}">
+    <form method="get" th:action="@{/indust/concreteindust/{id}(id=${id > 181}? 1 : ${id} + 1)}">
         <h3 th:text="'Ваш ответ на вопрос № '+ ${id} + ' -> ' + ${answer.getAnswer()}"></h3>
         <br>
         <h3 th:text="'Правильный ответ -> ' + ${correctAnswer}" class="text-success"></h3>
@@ -21,7 +21,7 @@
         <input type="submit" value="Следующий вопрос" class="btn btn-primary">
     </form>
     <br>
-    <form th:action="@{/concreteindust/{id}(id=${answer.getId()})}" method="get">
+    <form th:action="@{/indust/concreteindust/{id}(id=${answer.getId()})}" method="get">
         <input type="submit" value="Повторить вопрос" class="btn btn-warning">
     </form>
 </div>

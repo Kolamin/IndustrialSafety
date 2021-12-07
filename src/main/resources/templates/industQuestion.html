@@ -11,7 +11,7 @@
     <header>
         <h3 th:text="'Вопрос ' + ${question.getId()}"></h3>
     </header>
-    <form th:method="post" th:action="@{/answer/{id}(id=${question.getId()})}" th:object="${question}">
+    <form th:method="post" th:action="@{/indust/answer/{id}(id=${question.getId()})}" th:object="${question}">
         <h4 th:text="*{getName()}"></h4>
         <br>
         <ul class="list-group">
