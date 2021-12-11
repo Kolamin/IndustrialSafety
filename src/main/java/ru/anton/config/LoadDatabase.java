@@ -30,6 +30,8 @@ public class LoadDatabase {
                                    OilAllQuestRepo oilAllQuestRepo,
                                    CorrectAnswerOilRepo answerOilRepo) {
         return args -> {
+
+            //----------------------Load content-----------------------
             IndustrialSafetyApplication obj = new IndustrialSafetyApplication();
 
             InputStream inputIndustrialQuestions = obj
