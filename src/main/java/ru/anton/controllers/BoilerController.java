@@ -5,8 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.anton.entity.boiler.BoilerQuestions;
 import ru.anton.entity.boiler.ConcreteBoilerAnswer;
-import ru.anton.entity.industrial.CorrectIndustAnswer;
-import ru.anton.entity.industrial.IndustrialQuestions;
 import ru.anton.repository.boiler.BoilerRepository;
 import ru.anton.repository.boiler.CorrectAnswerBoilerRepo;
 

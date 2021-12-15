@@ -18,8 +18,14 @@ public class BoilerQuestions extends AbstractIdentifiableObject {
     @NonNull
     private String name;
 
-    @Getter
-    @Setter
+    public String getAnswer() {
+        return answer == null ? answer = "выберите ответ!!!" : answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     private String answer;
 
     @Getter
